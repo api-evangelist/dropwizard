@@ -1,0 +1,296 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Dropwizard Admin API",
+    "description": "REST API provided by the Dropwizard admin servlet, exposing health checks, metrics, thread dumps, and operational tasks on the admin port.",
+    "version": "4.0.0",
+    "contact": {
+      "name": "Dropwizard",
+      "url": "https://www.dropwizard.io/"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8081",
+      "description": "Default Dropwizard admin port"
+    }
+  ],
+  "paths": {
+    "/healthcheck": {
+      "get": {
+        "operationId": "getHealthChecks",
+        "summary": "Run all health checks",
+        "description": "Executes all registered health checks and returns their results. Returns 200 if all pass, 500 if any fail.",
+        "tags": ["Health"],
+        "responses": {
+          "200": {
+            "description": "All health checks passing.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/HealthCheckResult"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "One or more health checks failing.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/HealthCheckResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metrics": {
+      "get": {
+        "operationId": "getMetrics",
+        "summary": "Get all metrics",
+        "description": "Returns all registered application metrics including gauges, counters, histograms, meters, and timers.",
+        "tags": ["Metrics"],
+        "parameters": [
+          {
+            "name": "pretty",
+            "in": "query",
+            "description": "Pretty-print the JSON output.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All metrics.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Metrics"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/threads": {
+      "get": {
+        "operationId": "getThreadDump",
+        "summary": "Get thread dump",
+        "description": "Returns a thread dump of all running threads in the JVM.",
+        "tags": ["Diagnostics"],
+        "responses": {
+          "200": {
+            "description": "Thread dump output.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ping": {
+      "get": {
+        "operationId": "ping",
+        "summary": "Ping the application",
+        "description": "Simple liveness check that returns pong.",
+        "tags": ["Health"],
+        "responses": {
+          "200": {
+            "description": "Application is alive.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "example": "pong"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tasks/{taskName}": {
+      "post": {
+        "operationId": "executeTask",
+        "summary": "Execute an admin task",
+        "description": "Executes a registered admin task by name. Built-in tasks include gc (garbage collection) and log-level.",
+        "tags": ["Tasks"],
+        "parameters": [
+          {
+            "name": "taskName",
+            "in": "path",
+            "required": true,
+            "description": "Name of the task to execute.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Task executed successfully.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Task not found."
+          }
+        }
+      }
+    },
+    "/tasks/log-level": {
+      "post": {
+        "operationId": "changeLogLevel",
+        "summary": "Change log level at runtime",
+        "description": "Changes the log level for a specific logger at runtime.",
+        "tags": ["Tasks"],
+        "parameters": [
+          {
+            "name": "logger",
+            "in": "query",
+            "required": true,
+            "description": "Logger name to change.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "level",
+            "in": "query",
+            "required": true,
+            "description": "New log level.",
+            "schema": {
+              "type": "string",
+              "enum": ["TRACE", "DEBUG", "INFO", "WARN", "ERROR", "OFF"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Log level changed successfully."
+          }
+        }
+      }
+    },
+    "/tasks/gc": {
+      "post": {
+        "operationId": "runGarbageCollection",
+        "summary": "Trigger garbage collection",
+        "description": "Triggers a JVM garbage collection.",
+        "tags": ["Tasks"],
+        "responses": {
+          "200": {
+            "description": "Garbage collection triggered."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HealthCheckResult": {
+        "type": "object",
+        "properties": {
+          "healthy": {
+            "type": "boolean",
+            "description": "Whether this health check is passing."
+          },
+          "message": {
+            "type": "string",
+            "description": "Optional message from the health check."
+          },
+          "duration": {
+            "type": "integer",
+            "description": "Time taken in milliseconds."
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Metrics": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "string"
+          },
+          "gauges": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "value": {}
+              }
+            }
+          },
+          "counters": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "histograms": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "meters": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "timers": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Health",
+      "description": "Health check and liveness endpoints."
+    },
+    {
+      "name": "Metrics",
+      "description": "Application metrics endpoints."
+    },
+    {
+      "name": "Diagnostics",
+      "description": "JVM diagnostic endpoints."
+    },
+    {
+      "name": "Tasks",
+      "description": "Administrative task execution endpoints."
+    }
+  ]
+}

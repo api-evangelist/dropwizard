@@ -1,0 +1,276 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/dropwizard/json-schema/dropwizard-config.json",
+  "title": "Dropwizard Configuration",
+  "description": "JSON Schema for the Dropwizard config.yml file covering server, logging, metrics, database, and application settings.",
+  "type": "object",
+  "properties": {
+    "server": {
+      "type": "object",
+      "description": "HTTP server configuration.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Server type.",
+          "enum": ["default", "simple"],
+          "default": "default"
+        },
+        "applicationConnectors": {
+          "type": "array",
+          "description": "Application port connectors.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["http", "https"],
+                "default": "http"
+              },
+              "port": {
+                "type": "integer",
+                "default": 8080,
+                "minimum": 0,
+                "maximum": 65535
+              },
+              "bindHost": {
+                "type": "string",
+                "description": "Interface to bind to."
+              },
+              "keyStorePath": {
+                "type": "string"
+              },
+              "keyStorePassword": {
+                "type": "string"
+              },
+              "certAlias": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "adminConnectors": {
+          "type": "array",
+          "description": "Admin port connectors.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["http", "https"],
+                "default": "http"
+              },
+              "port": {
+                "type": "integer",
+                "default": 8081,
+                "minimum": 0,
+                "maximum": 65535
+              },
+              "bindHost": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "requestLog": {
+          "type": "object",
+          "description": "Request logging configuration.",
+          "properties": {
+            "appenders": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["console", "file", "syslog"]
+                  },
+                  "threshold": {
+                    "type": "string"
+                  },
+                  "currentLogFilename": {
+                    "type": "string"
+                  },
+                  "archivedLogFilenamePattern": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": true
+              }
+            }
+          },
+          "additionalProperties": true
+        },
+        "maxThreads": {
+          "type": "integer",
+          "description": "Maximum number of threads.",
+          "default": 1024
+        },
+        "minThreads": {
+          "type": "integer",
+          "description": "Minimum number of threads.",
+          "default": 8
+        },
+        "idleThreadTimeout": {
+          "type": "string",
+          "description": "Idle thread timeout duration.",
+          "default": "1 minute"
+        },
+        "gzip": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true
+            },
+            "minimumEntitySize": {
+              "type": "string",
+              "default": "256 bytes"
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "logging": {
+      "type": "object",
+      "description": "Logging configuration.",
+      "properties": {
+        "level": {
+          "type": "string",
+          "description": "Default log level.",
+          "enum": ["TRACE", "DEBUG", "INFO", "WARN", "ERROR", "OFF"],
+          "default": "INFO"
+        },
+        "loggers": {
+          "type": "object",
+          "description": "Per-logger level overrides.",
+          "additionalProperties": {
+            "type": "string",
+            "enum": ["TRACE", "DEBUG", "INFO", "WARN", "ERROR", "OFF"]
+          }
+        },
+        "appenders": {
+          "type": "array",
+          "description": "Log appenders.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["console", "file", "syslog"]
+              },
+              "threshold": {
+                "type": "string"
+              },
+              "currentLogFilename": {
+                "type": "string"
+              },
+              "archivedLogFilenamePattern": {
+                "type": "string"
+              },
+              "archivedFileCount": {
+                "type": "integer",
+                "default": 5
+              },
+              "maxFileSize": {
+                "type": "string"
+              },
+              "timeZone": {
+                "type": "string",
+                "default": "UTC"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "metrics": {
+      "type": "object",
+      "description": "Metrics reporting configuration.",
+      "properties": {
+        "frequency": {
+          "type": "string",
+          "description": "Reporting frequency.",
+          "default": "1 minute"
+        },
+        "reporters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Reporter type (e.g., log, graphite, console)."
+              },
+              "host": {
+                "type": "string"
+              },
+              "port": {
+                "type": "integer"
+              },
+              "prefix": {
+                "type": "string"
+              },
+              "frequency": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "database": {
+      "type": "object",
+      "description": "Database / DataSource configuration.",
+      "properties": {
+        "driverClass": {
+          "type": "string",
+          "description": "JDBC driver class name."
+        },
+        "url": {
+          "type": "string",
+          "description": "JDBC connection URL."
+        },
+        "user": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "maxSize": {
+          "type": "integer",
+          "description": "Max connection pool size.",
+          "default": 8
+        },
+        "minSize": {
+          "type": "integer",
+          "description": "Min connection pool size.",
+          "default": 0
+        },
+        "initialSize": {
+          "type": "integer",
+          "description": "Initial connection pool size.",
+          "default": 0
+        },
+        "checkConnectionWhileIdle": {
+          "type": "boolean",
+          "default": true
+        },
+        "validationQuery": {
+          "type": "string",
+          "description": "SQL query to validate connections.",
+          "default": "SELECT 1"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
