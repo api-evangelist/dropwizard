@@ -1,11 +1,18 @@
 aid: dropwizard
 name: Dropwizard
 description: >-
-  Dropwizard is a Java framework for developing RESTful web services with production-ready features out of the box.
+  Dropwizard is a Java framework for developing ops-friendly, high-performance
+  RESTful web services, pulling together stable, mature libraries from the Java
+  ecosystem into a simple, lightweight package.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Microservices
+  - Java
+  - REST
+  - Web Services
+  - Frameworks
+  - API Development
 url: >-
   https://raw.githubusercontent.com/api-evangelist/dropwizard/refs/heads/main/apis.yml
 created: '2026-03-26'
@@ -15,14 +22,31 @@ apis:
   - aid: dropwizard:dropwizard
     name: Dropwizard
     description: >-
-      Dropwizard is a Java framework for developing RESTful web services with production-ready features out of the box.
-    humanURL: https://github.com/api-evangelist/dropwizard
+      Dropwizard is a Java framework for developing ops-friendly, high-performance
+      RESTful web services, pulling together stable, mature libraries from the Java
+      ecosystem into a simple, lightweight package.
+    humanURL: https://www.dropwizard.io/
     tags:
       - Microservices
-    properties: []
+      - Java
+      - REST
+      - Web Services
+      - Frameworks
+      - API Development
+    properties:
+      - type: Documentation
+        url: https://www.dropwizard.io/en/stable/
+      - type: Getting Started
+        url: https://www.dropwizard.io/en/stable/getting-started.html
 common:
   - type: Website
-    url: https://github.com/api-evangelist/dropwizard
+    url: https://www.dropwizard.io/
+  - type: Documentation
+    url: https://www.dropwizard.io/en/stable/
+  - type: Getting Started
+    url: https://www.dropwizard.io/en/stable/getting-started.html
+  - type: GitHub Organization
+    url: https://github.com/dropwizard
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
