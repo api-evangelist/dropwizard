@@ -1,0 +1,158 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Dropwizard Admin API — Tasks
+  description: 'Dropwizard Admin API — Tasks. 3 operations. Lead operation: Trigger garbage collection. Self-contained Naftiko
+    capability covering one Dropwizard business surface.'
+  tags:
+  - Dropwizard
+  - Tasks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    DROPWIZARD_API_KEY: DROPWIZARD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: admin-tasks
+    baseUri: http://localhost:8081
+    description: Dropwizard Admin API — Tasks business capability. Self-contained, no shared references.
+    resources:
+    - name: tasks-gc
+      path: /tasks/gc
+      operations:
+      - name: rungarbagecollection
+        method: POST
+        description: Trigger garbage collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: tasks-log-level
+      path: /tasks/log-level
+      operations:
+      - name: changeloglevel
+        method: POST
+        description: Change log level at runtime
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: logger
+          in: query
+          type: string
+          description: Logger name to change.
+          required: true
+        - name: level
+          in: query
+          type: string
+          description: New log level.
+          required: true
+    - name: tasks-taskName
+      path: /tasks/{taskName}
+      operations:
+      - name: executetask
+        method: POST
+        description: Execute an admin task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: taskName
+          in: path
+          type: string
+          description: Name of the task to execute.
+          required: true
+  exposes:
+  - type: rest
+    namespace: admin-tasks-rest
+    port: 8080
+    description: REST adapter for Dropwizard Admin API — Tasks. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/tasks/gc
+      name: tasks-gc
+      description: REST surface for tasks-gc.
+      operations:
+      - method: POST
+        name: rungarbagecollection
+        description: Trigger garbage collection
+        call: admin-tasks.rungarbagecollection
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tasks/log-level
+      name: tasks-log-level
+      description: REST surface for tasks-log-level.
+      operations:
+      - method: POST
+        name: changeloglevel
+        description: Change log level at runtime
+        call: admin-tasks.changeloglevel
+        with:
+          logger: rest.logger
+          level: rest.level
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tasks/{taskname}
+      name: tasks-taskname
+      description: REST surface for tasks-taskName.
+      operations:
+      - method: POST
+        name: executetask
+        description: Execute an admin task
+        call: admin-tasks.executetask
+        with:
+          taskName: rest.taskName
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: admin-tasks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Dropwizard Admin API — Tasks. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: trigger-garbage-collection
+      description: Trigger garbage collection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: admin-tasks.rungarbagecollection
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: change-log-level-runtime
+      description: Change log level at runtime
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: admin-tasks.changeloglevel
+      with:
+        logger: tools.logger
+        level: tools.level
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: execute-admin-task
+      description: Execute an admin task
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: admin-tasks.executetask
+      with:
+        taskName: tools.taskName
+      outputParameters:
+      - type: object
+        mapping: $.
