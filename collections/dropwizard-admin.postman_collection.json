@@ -1,0 +1,660 @@
+{
+  "item": [
+    {
+      "id": "48c56073-99df-46aa-a008-4ee408ad81b3",
+      "name": "Health",
+      "description": {
+        "content": "Health check and liveness endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d54482e3-7f96-4b3e-b6a9-9ec392ee5dc7",
+          "name": "Run all health checks",
+          "request": {
+            "name": "Run all health checks",
+            "description": {
+              "content": "Executes all registered health checks and returns their results. Returns 200 if all pass, 500 if any fail.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "healthcheck"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0d4be6d5-3a5c-41fc-bca9-946fb43ccd37",
+              "name": "All health checks passing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "healthcheck"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": {\n    \"healthy\": true,\n    \"message\": \"string\",\n    \"duration\": 9170,\n    \"timestamp\": \"1953-11-01T02:05:27.502Z\"\n  },\n  \"key_1\": {\n    \"healthy\": false,\n    \"message\": \"string\",\n    \"duration\": 3452,\n    \"timestamp\": \"2006-10-20T09:49:04.984Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7764ddd-cb2b-4da1-acd4-3b2a3f2359cc",
+              "name": "One or more health checks failing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "healthcheck"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": {\n    \"healthy\": true,\n    \"message\": \"string\",\n    \"duration\": 9170,\n    \"timestamp\": \"1953-11-01T02:05:27.502Z\"\n  },\n  \"key_1\": {\n    \"healthy\": false,\n    \"message\": \"string\",\n    \"duration\": 3452,\n    \"timestamp\": \"2006-10-20T09:49:04.984Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "71dff25f-1fab-4e7b-a4d9-f2edcee03403",
+          "name": "Ping the application",
+          "request": {
+            "name": "Ping the application",
+            "description": {
+              "content": "Simple liveness check that returns pong.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ping"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7a70eec9-6d31-449e-a2ae-eddfddf537cb",
+              "name": "Application is alive.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ping"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "pong",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "9c343c64-9832-4429-8dc0-5685cd936bf5",
+      "name": "Metrics",
+      "description": {
+        "content": "Application metrics endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "df1c2248-baa4-4044-b304-80101efaf7b5",
+          "name": "Get all metrics",
+          "request": {
+            "name": "Get all metrics",
+            "description": {
+              "content": "Returns all registered application metrics including gauges, counters, histograms, meters, and timers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Pretty-print the JSON output."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a91787f-a52e-41b6-a11c-391081d474fa",
+              "name": "All metrics.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": \"string\",\n  \"gauges\": {\n    \"key_0\": {\n      \"value\": \"\"\n    },\n    \"key_1\": {\n      \"value\": \"\"\n    },\n    \"key_2\": {\n      \"value\": \"\"\n    }\n  },\n  \"counters\": {\n    \"key_0\": {\n      \"count\": 680\n    },\n    \"key_1\": {\n      \"count\": 7026\n    },\n    \"key_2\": {\n      \"count\": 3983\n    }\n  },\n  \"histograms\": {\n    \"key_0\": 4799,\n    \"key_1\": 7953\n  },\n  \"meters\": {\n    \"key_0\": \"string\",\n    \"key_1\": 7913,\n    \"key_2\": 3683,\n    \"key_3\": 1268.8850030794163,\n    \"key_4\": \"string\"\n  },\n  \"timers\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "82a93d55-4f12-4b19-b358-2d4bdd6c4960",
+      "name": "Diagnostics",
+      "description": {
+        "content": "JVM diagnostic endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7979e812-3f0a-414d-90ce-cabd14deff68",
+          "name": "Get thread dump",
+          "request": {
+            "name": "Get thread dump",
+            "description": {
+              "content": "Returns a thread dump of all running threads in the JVM.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "threads"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8f8967ff-87a7-46cb-82a2-004fc203bae9",
+              "name": "Thread dump output.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "threads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2e11ce84-ae20-4b28-9990-385876f6eb9d",
+      "name": "Tasks",
+      "description": {
+        "content": "Administrative task execution endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a7b9fef9-be26-4aa4-bc17-4904d46cc7d8",
+          "name": "Execute an admin task",
+          "request": {
+            "name": "Execute an admin task",
+            "description": {
+              "content": "Executes a registered admin task by name. Built-in tasks include gc (garbage collection) and log-level.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks",
+                ":taskName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskName",
+                  "description": "(Required) Name of the task to execute."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "def3cb99-39b8-4e1f-98d0-415f56483a32",
+              "name": "Task executed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    ":taskName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskName",
+                      "description": "(Required) Name of the task to execute."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "054946b4-f54d-4668-99f8-420dd307d4e8",
+              "name": "Task not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    ":taskName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskName",
+                      "description": "(Required) Name of the task to execute."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60a779e0-374b-426f-92fa-129207689fa1",
+          "name": "Change log level at runtime",
+          "request": {
+            "name": "Change log level at runtime",
+            "description": {
+              "content": "Changes the log level for a specific logger at runtime.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks",
+                "log-level"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "logger",
+                  "value": "<string>",
+                  "description": "(Required) Logger name to change."
+                },
+                {
+                  "disabled": false,
+                  "key": "level",
+                  "value": "<string>",
+                  "description": "(Required) New log level."
+                }
+              ],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "705f90a8-6ba7-4edc-8f87-7ccee8f86e50",
+              "name": "Log level changed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    "log-level"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "logger",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c944b9ce-234e-42ed-9436-87c5a1a790a2",
+          "name": "Trigger garbage collection",
+          "request": {
+            "name": "Trigger garbage collection",
+            "description": {
+              "content": "Triggers a JVM garbage collection.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks",
+                "gc"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "12ceda55-e79f-457a-8a83-bcd407465f7e",
+              "name": "Garbage collection triggered.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    "gc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8081",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d0fc9d67-b25e-4cf4-8b11-4afa88125deb",
+    "name": "Dropwizard Admin API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API provided by the Dropwizard admin servlet, exposing health checks, metrics, thread dumps, and operational tasks on the admin port.\n\nContact Support:\n Name: Dropwizard",
+      "type": "text/plain"
+    }
+  }
+}

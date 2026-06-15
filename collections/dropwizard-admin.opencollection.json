@@ -1,0 +1,149 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dropwizard Admin API",
+    "version": "4.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Run all health checks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8081/healthcheck"
+          },
+          "docs": "Executes all registered health checks and returns their results. Returns 200 if all pass, 500 if any fail."
+        },
+        {
+          "info": {
+            "name": "Ping the application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8081/ping"
+          },
+          "docs": "Simple liveness check that returns pong."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8081/metrics",
+            "params": [
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Pretty-print the JSON output."
+              }
+            ]
+          },
+          "docs": "Returns all registered application metrics including gauges, counters, histograms, meters, and timers."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Diagnostics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get thread dump",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8081/threads"
+          },
+          "docs": "Returns a thread dump of all running threads in the JVM."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute an admin task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8081/tasks/:taskName",
+            "params": [
+              {
+                "name": "taskName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the task to execute."
+              }
+            ]
+          },
+          "docs": "Executes a registered admin task by name. Built-in tasks include gc (garbage collection) and log-level."
+        },
+        {
+          "info": {
+            "name": "Change log level at runtime",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8081/tasks/log-level",
+            "params": [
+              {
+                "name": "logger",
+                "value": "",
+                "type": "query",
+                "description": "Logger name to change."
+              },
+              {
+                "name": "level",
+                "value": "",
+                "type": "query",
+                "description": "New log level."
+              }
+            ]
+          },
+          "docs": "Changes the log level for a specific logger at runtime."
+        },
+        {
+          "info": {
+            "name": "Trigger garbage collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8081/tasks/gc"
+          },
+          "docs": "Triggers a JVM garbage collection."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
