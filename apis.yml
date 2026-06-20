@@ -4,7 +4,7 @@ description: >-
   Dropwizard is a Java framework for developing ops-friendly, high-performance RESTful web services, pulling together
   stable, mature libraries from the Java ecosystem into a simple, lightweight package.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - API Development
   - Frameworks
