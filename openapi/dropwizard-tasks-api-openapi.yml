@@ -1,0 +1,81 @@
+openapi: 3.0.3
+info:
+  title: Dropwizard Admin Diagnostics Tasks API
+  description: REST API provided by the Dropwizard admin servlet, exposing health checks, metrics, thread dumps, and operational tasks on the admin port.
+  version: 4.0.0
+  contact:
+    name: Dropwizard
+    url: https://www.dropwizard.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:8081
+  description: Default Dropwizard admin port
+tags:
+- name: Tasks
+  description: Administrative task execution endpoints.
+paths:
+  /tasks/{taskName}:
+    post:
+      operationId: executeTask
+      summary: Execute an admin task
+      description: Executes a registered admin task by name. Built-in tasks include gc (garbage collection) and log-level.
+      tags:
+      - Tasks
+      parameters:
+      - name: taskName
+        in: path
+        required: true
+        description: Name of the task to execute.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Task executed successfully.
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: Task not found.
+  /tasks/log-level:
+    post:
+      operationId: changeLogLevel
+      summary: Change log level at runtime
+      description: Changes the log level for a specific logger at runtime.
+      tags:
+      - Tasks
+      parameters:
+      - name: logger
+        in: query
+        required: true
+        description: Logger name to change.
+        schema:
+          type: string
+      - name: level
+        in: query
+        required: true
+        description: New log level.
+        schema:
+          type: string
+          enum:
+          - TRACE
+          - DEBUG
+          - INFO
+          - WARN
+          - ERROR
+          - 'OFF'
+      responses:
+        '200':
+          description: Log level changed successfully.
+  /tasks/gc:
+    post:
+      operationId: runGarbageCollection
+      summary: Trigger garbage collection
+      description: Triggers a JVM garbage collection.
+      tags:
+      - Tasks
+      responses:
+        '200':
+          description: Garbage collection triggered.

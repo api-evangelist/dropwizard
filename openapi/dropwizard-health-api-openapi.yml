@@ -1,0 +1,74 @@
+openapi: 3.0.3
+info:
+  title: Dropwizard Admin Diagnostics Health API
+  description: REST API provided by the Dropwizard admin servlet, exposing health checks, metrics, thread dumps, and operational tasks on the admin port.
+  version: 4.0.0
+  contact:
+    name: Dropwizard
+    url: https://www.dropwizard.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:8081
+  description: Default Dropwizard admin port
+tags:
+- name: Health
+  description: Health check and liveness endpoints.
+paths:
+  /healthcheck:
+    get:
+      operationId: getHealthChecks
+      summary: Run all health checks
+      description: Executes all registered health checks and returns their results. Returns 200 if all pass, 500 if any fail.
+      tags:
+      - Health
+      responses:
+        '200':
+          description: All health checks passing.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  $ref: '#/components/schemas/HealthCheckResult'
+        '500':
+          description: One or more health checks failing.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  $ref: '#/components/schemas/HealthCheckResult'
+  /ping:
+    get:
+      operationId: ping
+      summary: Ping the application
+      description: Simple liveness check that returns pong.
+      tags:
+      - Health
+      responses:
+        '200':
+          description: Application is alive.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: pong
+components:
+  schemas:
+    HealthCheckResult:
+      type: object
+      properties:
+        healthy:
+          type: boolean
+          description: Whether this health check is passing.
+        message:
+          type: string
+          description: Optional message from the health check.
+        duration:
+          type: integer
+          description: Time taken in milliseconds.
+        timestamp:
+          type: string
+          format: date-time

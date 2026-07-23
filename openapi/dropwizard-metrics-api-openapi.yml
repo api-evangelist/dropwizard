@@ -1,0 +1,68 @@
+openapi: 3.0.3
+info:
+  title: Dropwizard Admin Diagnostics Metrics API
+  description: REST API provided by the Dropwizard admin servlet, exposing health checks, metrics, thread dumps, and operational tasks on the admin port.
+  version: 4.0.0
+  contact:
+    name: Dropwizard
+    url: https://www.dropwizard.io/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:8081
+  description: Default Dropwizard admin port
+tags:
+- name: Metrics
+  description: Application metrics endpoints.
+paths:
+  /metrics:
+    get:
+      operationId: getMetrics
+      summary: Get all metrics
+      description: Returns all registered application metrics including gauges, counters, histograms, meters, and timers.
+      tags:
+      - Metrics
+      parameters:
+      - name: pretty
+        in: query
+        description: Pretty-print the JSON output.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: All metrics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Metrics'
+components:
+  schemas:
+    Metrics:
+      type: object
+      properties:
+        version:
+          type: string
+        gauges:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              value: {}
+        counters:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              count:
+                type: integer
+        histograms:
+          type: object
+          additionalProperties: true
+        meters:
+          type: object
+          additionalProperties: true
+        timers:
+          type: object
+          additionalProperties: true
