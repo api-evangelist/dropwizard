@@ -4,7 +4,19 @@ description: >-
   Dropwizard is a Java framework for developing ops-friendly, high-performance RESTful web services, pulling together
   stable, mature libraries from the Java ecosystem into a simple, lightweight package.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/dropwizard.png
 tags:
   - API Development
   - Frameworks
@@ -17,28 +29,70 @@ created: '2026-03-26'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: dropwizard:dropwizard
-    name: Dropwizard
-    description: >-
-      Dropwizard is a Java framework for developing ops-friendly, high-performance RESTful web services, pulling
-      together stable, mature libraries from the Java ecosystem into a simple, lightweight package.
-    humanURL: https://www.dropwizard.io/
-    tags:
-      - API Development
-      - Frameworks
-      - Java
-      - Microservices
-      - REST
-      - Web Services
-    properties:
-      - type: Documentation
-        url: https://www.dropwizard.io/en/stable/
-      - type: GettingStarted
-        url: https://www.dropwizard.io/en/stable/getting-started.html
-      - type: JSONSchema
-        url: https://raw.githubusercontent.com/api-evangelist/dropwizard/refs/heads/main/json-schema/dropwizard-config.json
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/dropwizard/refs/heads/main/openapi/dropwizard-admin.json
+- aid: dropwizard:dropwizard-diagnostics-api
+  name: Dropwizard Diagnostics API
+  description: JVM diagnostic endpoints.
+  humanURL: https://www.dropwizard.io/
+  tags:
+  - Diagnostics
+  properties:
+  - type: OpenAPI
+    url: openapi/dropwizard-diagnostics-api-openapi.yml
+  - type: Documentation
+    url: https://www.dropwizard.io/en/stable/
+  - type: GettingStarted
+    url: https://www.dropwizard.io/en/stable/getting-started.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dropwizard/refs/heads/main/json-schema/dropwizard-config.json
+- aid: dropwizard:dropwizard-health-api
+  name: Dropwizard Health API
+  description: Health check and liveness endpoints.
+  humanURL: https://www.dropwizard.io/
+  tags:
+  - Health
+  properties:
+  - type: OpenAPI
+    url: openapi/dropwizard-health-api-openapi.yml
+  - type: Documentation
+    url: https://www.dropwizard.io/en/stable/
+  - type: GettingStarted
+    url: https://www.dropwizard.io/en/stable/getting-started.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dropwizard/refs/heads/main/json-schema/dropwizard-config.json
+- aid: dropwizard:dropwizard-metrics-api
+  name: Dropwizard Metrics API
+  description: Application metrics endpoints.
+  humanURL: https://www.dropwizard.io/
+  tags:
+  - Metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/dropwizard-metrics-api-openapi.yml
+  - type: Documentation
+    url: https://www.dropwizard.io/en/stable/
+  - type: GettingStarted
+    url: https://www.dropwizard.io/en/stable/getting-started.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dropwizard/refs/heads/main/json-schema/dropwizard-config.json
+- aid: dropwizard:dropwizard-tasks-api
+  name: Dropwizard Tasks API
+  description: Administrative task execution endpoints.
+  humanURL: https://www.dropwizard.io/
+  tags:
+  - Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/dropwizard-tasks-api-openapi.yml
+  - type: Documentation
+    url: https://www.dropwizard.io/en/stable/
+  - type: GettingStarted
+    url: https://www.dropwizard.io/en/stable/getting-started.html
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/dropwizard/refs/heads/main/json-schema/dropwizard-config.json
 common:
   - type: AgenticAccess
     url: agentic-access/dropwizard-agentic-access.yml
