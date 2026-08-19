@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dropwizard Admin Diagnostics Health API",
+    "version": "4.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Run all health checks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8081/healthcheck"
+          },
+          "docs": "Executes all registered health checks and returns their results. Returns 200 if all pass, 500 if any fail."
+        },
+        {
+          "info": {
+            "name": "Ping the application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8081/ping"
+          },
+          "docs": "Simple liveness check that returns pong."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

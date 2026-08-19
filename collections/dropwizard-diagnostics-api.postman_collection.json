@@ -1,0 +1,102 @@
+{
+  "item": [
+    {
+      "id": "cc8b0895-ead3-4c34-b6c3-63e9a5075d90",
+      "name": "Diagnostics",
+      "description": {
+        "content": "JVM diagnostic endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "616d3b9c-c930-41c7-b719-56d8d6bed505",
+          "name": "Get thread dump",
+          "request": {
+            "name": "Get thread dump",
+            "description": {
+              "content": "Returns a thread dump of all running threads in the JVM.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "threads"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "94f5c098-fb0d-4b0b-96cf-331db57eda0c",
+              "name": "Thread dump output.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "threads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8081",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9e3a6602-5df2-482b-adc1-5954a8957e6c",
+    "name": "Dropwizard Admin Diagnostics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API provided by the Dropwizard admin servlet, exposing health checks, metrics, thread dumps, and operational tasks on the admin port.\n\nContact Support:\n Name: Dropwizard",
+      "type": "text/plain"
+    }
+  }
+}

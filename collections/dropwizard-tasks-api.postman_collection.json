@@ -1,0 +1,300 @@
+{
+  "item": [
+    {
+      "id": "b8257925-4f2e-42b5-a55d-892f120a4087",
+      "name": "Tasks",
+      "description": {
+        "content": "Administrative task execution endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b4a2337b-8d25-430c-9262-12fb6e0ce4a7",
+          "name": "Execute an admin task",
+          "request": {
+            "name": "Execute an admin task",
+            "description": {
+              "content": "Executes a registered admin task by name. Built-in tasks include gc (garbage collection) and log-level.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks",
+                ":taskName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskName",
+                  "description": "(Required) Name of the task to execute."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2cdfd693-82de-470b-bd26-690ad4223d1a",
+              "name": "Task executed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    ":taskName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskName",
+                      "description": "(Required) Name of the task to execute."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "38cf605c-9009-453c-ac27-215900592a6d",
+              "name": "Task not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    ":taskName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskName",
+                      "description": "(Required) Name of the task to execute."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9c164ad-d68c-46c6-a7a1-8b186873b887",
+          "name": "Change log level at runtime",
+          "request": {
+            "name": "Change log level at runtime",
+            "description": {
+              "content": "Changes the log level for a specific logger at runtime.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks",
+                "log-level"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "logger",
+                  "value": "<string>",
+                  "description": "(Required) Logger name to change."
+                },
+                {
+                  "disabled": false,
+                  "key": "level",
+                  "value": "<string>",
+                  "description": "(Required) New log level."
+                }
+              ],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d248fe15-611e-452b-8cd9-38bed28ea851",
+              "name": "Log level changed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    "log-level"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "logger",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf05f718-2ba7-474c-85ce-0f4cbb030e0b",
+          "name": "Trigger garbage collection",
+          "request": {
+            "name": "Trigger garbage collection",
+            "description": {
+              "content": "Triggers a JVM garbage collection.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tasks",
+                "gc"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f55bb9b2-376d-4916-ab1d-5e358d18e9f9",
+              "name": "Garbage collection triggered.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tasks",
+                    "gc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8081",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b0f13db9-5299-43d6-925b-bc89b3027bb3",
+    "name": "Dropwizard Admin Diagnostics Tasks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API provided by the Dropwizard admin servlet, exposing health checks, metrics, thread dumps, and operational tasks on the admin port.\n\nContact Support:\n Name: Dropwizard",
+      "type": "text/plain"
+    }
+  }
+}

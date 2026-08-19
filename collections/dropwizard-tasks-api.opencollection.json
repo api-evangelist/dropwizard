@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dropwizard Admin Diagnostics Tasks API",
+    "version": "4.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute an admin task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8081/tasks/:taskName",
+            "params": [
+              {
+                "name": "taskName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the task to execute."
+              }
+            ]
+          },
+          "docs": "Executes a registered admin task by name. Built-in tasks include gc (garbage collection) and log-level."
+        },
+        {
+          "info": {
+            "name": "Change log level at runtime",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8081/tasks/log-level",
+            "params": [
+              {
+                "name": "logger",
+                "value": "",
+                "type": "query",
+                "description": "Logger name to change."
+              },
+              {
+                "name": "level",
+                "value": "",
+                "type": "query",
+                "description": "New log level."
+              }
+            ]
+          },
+          "docs": "Changes the log level for a specific logger at runtime."
+        },
+        {
+          "info": {
+            "name": "Trigger garbage collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8081/tasks/gc"
+          },
+          "docs": "Triggers a JVM garbage collection."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

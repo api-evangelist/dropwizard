@@ -1,0 +1,114 @@
+{
+  "item": [
+    {
+      "id": "0d54b91a-edd3-41b7-9b87-284bc459c949",
+      "name": "Metrics",
+      "description": {
+        "content": "Application metrics endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4f16b1e0-9d49-42eb-ab32-b511548a9f17",
+          "name": "Get all metrics",
+          "request": {
+            "name": "Get all metrics",
+            "description": {
+              "content": "Returns all registered application metrics including gauges, counters, histograms, meters, and timers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "false",
+                  "description": "Pretty-print the JSON output."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2537cc15-029c-4606-b69d-655ffac87760",
+              "name": "All metrics.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pretty",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": \"string\",\n  \"gauges\": {\n    \"key_0\": {\n      \"value\": \"\"\n    },\n    \"key_1\": {\n      \"value\": \"\"\n    }\n  },\n  \"counters\": {\n    \"key_0\": {\n      \"count\": 3678\n    }\n  },\n  \"histograms\": {\n    \"key_0\": \"string\",\n    \"key_1\": true\n  },\n  \"meters\": {\n    \"key_0\": true,\n    \"key_1\": 6649,\n    \"key_2\": 6304.836574955708\n  },\n  \"timers\": {\n    \"key_0\": 7908,\n    \"key_1\": 2585\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8081",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "48aaf7e1-3fee-431c-bf2f-fd8ef26ada7c",
+    "name": "Dropwizard Admin Diagnostics Metrics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API provided by the Dropwizard admin servlet, exposing health checks, metrics, thread dumps, and operational tasks on the admin port.\n\nContact Support:\n Name: Dropwizard",
+      "type": "text/plain"
+    }
+  }
+}
