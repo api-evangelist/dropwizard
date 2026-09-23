@@ -1,10 +1,7 @@
 {
   "provider": "dropwizard",
   "sources": [
-    "dropwizard-diagnostics-api-openapi.yml",
-    "dropwizard-health-api-openapi.yml",
-    "dropwizard-metrics-api-openapi.yml",
-    "dropwizard-tasks-api-openapi.yml"
+    "_original/dropwizard-admin.json"
   ],
   "outputs": [
     "dropwizard-diagnostics-api-openapi.yml",
@@ -15,6 +12,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "dropwizard-admin.json: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "dropwizard-diagnostics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "dropwizard-health-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "dropwizard-metrics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "dropwizard-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

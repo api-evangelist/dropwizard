@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Dropwizard Admin Diagnostics Tasks API
+  title: Dropwizard Admin Tasks API
   description: REST API provided by the Dropwizard admin servlet, exposing health checks, metrics, thread dumps, and operational tasks on the admin port.
   version: 4.0.0
   contact:
