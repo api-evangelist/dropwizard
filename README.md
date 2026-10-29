@@ -1,4 +1,4 @@
-# Dropwizard (dropwizard)
+# Dropwizard
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,60 +66,133 @@
 
 Dropwizard is a Java framework for developing ops-friendly, high-performance RESTful web services, pulling together stable, mature libraries from the Java ecosystem into a simple, lightweight package.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/dropwizard/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/dropwizard/refs/heads/main/apis.yml)
+**Areas:** API Development · Framework · Java · Microservices · REST · Web Services
 
-## Scope
+## Dropwizard on APIs.io
 
-- **Type:** Index
+Everything profiled for Dropwizard is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/dropwizard/](https://apis.io/providers/dropwizard/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (4)
 
-- API Development
-- Frameworks
-- Java
-- Microservices
-- REST
-- Web Services
+- [Dropwizard Diagnostics API](https://apis.io/apis/dropwizard/dropwizard-diagnostics-api/) — JVM diagnostic endpoints.
+- [Dropwizard Health API](https://apis.io/apis/dropwizard/dropwizard-health-api/) — Health check and liveness endpoints.
+- [Dropwizard Metrics API](https://apis.io/apis/dropwizard/dropwizard-metrics-api/) — Application metrics endpoints.
+- [Dropwizard Tasks API](https://apis.io/apis/dropwizard/dropwizard-tasks-api/) — Administrative task execution endpoints.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-26
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Dropwizard
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Dropwizard is a Java framework for developing ops-friendly, high-performance RESTful web services, pulling together stable, mature libraries from the Java ecosystem into a simple, lightweight package.
+- [Dropwizard Agentic Access](https://apis.io/agentic-access/dropwizard/dropwizard-agentic-access/)
 
-- **Human URL:** [https://www.dropwizard.io/](https://www.dropwizard.io/)
+#### JSON Schema (1)
 
-#### Tags
+The data models the API reads and writes.
 
-- API Development
-- Frameworks
-- Java
-- Microservices
-- REST
-- Web Services
+- [Dropwizard Configuration](https://apis.io/schemas/dropwizard/dropwizard-config/)
 
-#### Properties
+#### Collections (5)
 
-- [Documentation](https://www.dropwizard.io/en/stable/)
-- [Getting Started](https://www.dropwizard.io/en/stable/getting-started.html)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/dropwizard/refs/heads/main/json-schema/dropwizard-config.json) — [JSON Schema](https://json-schema.org/specification)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/dropwizard/refs/heads/main/openapi/dropwizard-admin.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/dropwizard-admin.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/dropwizard-admin.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Postman and Open Collection request collections.
 
-## Common Properties
+- [Dropwizard Admin API](https://apis.io/collections/dropwizard/open-dropwizard-admin/)
+- [Dropwizard Admin Diagnostics API](https://apis.io/collections/dropwizard/open-dropwizard-diagnostics-api/)
+- [Dropwizard Admin Diagnostics Health API](https://apis.io/collections/dropwizard/open-dropwizard-health-api/)
+- [Dropwizard Admin Diagnostics Metrics API](https://apis.io/collections/dropwizard/open-dropwizard-metrics-api/)
+- [Dropwizard Admin Diagnostics Tasks API](https://apis.io/collections/dropwizard/open-dropwizard-tasks-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Dropwizard — jsonschema rules](https://apis.io/rules/dropwizard/dropwizard-jsonschema-spectral-rules/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Dropwizard Domain Security](https://apis.io/security/dropwizard/dropwizard-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Dropwizard Plans Pricing](https://apis.io/plans/dropwizard/dropwizard-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Dropwizard Rate Limits](https://apis.io/rate-limits/dropwizard/dropwizard-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Dropwizard Finops](https://apis.io/finops/dropwizard/dropwizard-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.dropwizard.io/)
 - [Documentation](https://www.dropwizard.io/en/stable/)
-- [Getting Started](https://www.dropwizard.io/en/stable/getting-started.html)
-- [GitHub Organization](https://github.com/dropwizard)
+- [Getting started](https://www.dropwizard.io/en/stable/getting-started.html)
+- [GitHub](https://github.com/dropwizard)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 22.7** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 42.6 |
+| Contract governance | 9.8 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 21.4 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 5.9** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/dropwizard/](https://apis.io/providers/dropwizard/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Dropwizard: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/dropwizard/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
